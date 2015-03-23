@@ -6,9 +6,12 @@ package com.github.thatnerdjack.gridworldsandbox.firstClassProject;
 
 import info.gridworld.actor.Actor;
 import info.gridworld.actor.Critter;
+import info.gridworld.actor.Rock;
 import info.gridworld.grid.Location;
 
+import java.awt.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class LSRHSCritter extends Critter {
 
@@ -17,13 +20,15 @@ public class LSRHSCritter extends Critter {
      * same as that neighbor's. If there are no neighbors, no action is taken.
      */
     public void processActors(ArrayList<Actor> actors) {
-        int n = actors.size();
-        if (n == 0)
-            return;
-        int r = (int) (Math.random() * n);
+        Iterator i$ = actors.iterator();
 
-        Actor other = actors.get(r);
-        setColor(other.getColor());
+        while(i$.hasNext()) {
+            Actor a = (Actor)i$.next();
+            if(!(a instanceof Rock) && !(a instanceof Critter)) {
+                a.removeSelfFromGrid();
+                setColor(LSRHSRunner.randomColor());
+            }
+        }
     }
 
     /**
