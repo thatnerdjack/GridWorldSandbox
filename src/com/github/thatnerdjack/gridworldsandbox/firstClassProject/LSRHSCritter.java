@@ -9,11 +9,17 @@ import info.gridworld.actor.Critter;
 import info.gridworld.actor.Rock;
 import info.gridworld.grid.Location;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class LSRHSCritter extends Critter {
+    private int health;
+    private final int CRITTER_HEALTH_DAMAGE_VALUE = 5;
+    private final int FLOWER_HEALTH_GAIN_VALUE = 1;
+
+    public LSRHSCritter(int health) {
+        this.health = health;
+    }
 
     /**
      * Randomly selects a neighbor and changes this critter's color to be the
@@ -24,11 +30,23 @@ public class LSRHSCritter extends Critter {
 
         while(i$.hasNext()) {
             Actor a = (Actor)i$.next();
-            if(!(a instanceof Rock) && !(a instanceof Critter)) {
-                a.removeSelfFromGrid();
-                setColor(LSRHSRunner.randomColor());
+            if(!(a instanceof Rock)) {
+                if(a instanceof Critter) {
+                    a.removeSelfFromGrid();
+                    health = health - CRITTER_HEALTH_DAMAGE_VALUE;
+                    break;
+                } else if(!(a instanceof Critter)) {
+                    a.removeSelfFromGrid();
+                    health = health + FLOWER_HEALTH_GAIN_VALUE;
+                    break;
+                }
             }
+            healthSetColor();
         }
+    }
+
+    private void healthSetColor() {
+        setColor(getColor().darker());
     }
 
     /**

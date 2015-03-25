@@ -37,7 +37,7 @@ public class LSRHSRunner {
     public static void main(String[] args) {
         ActorWorld world = new ActorWorld(grid);
         addFlowers(2);
-        world.add(new Location(4, 4), new LSRHSCritter());
+        world.add(new Location(4, 4), new LSRHSCritter(10));
         world.show();
     }
 }
