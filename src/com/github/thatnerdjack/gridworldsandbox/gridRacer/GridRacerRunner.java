@@ -6,7 +6,8 @@ package com.github.thatnerdjack.gridworldsandbox.gridRacer;
 public class GridRacerRunner {
 
     public static void main(String args[]) {
-        //code here
+        Racetrack racetrack = new Racetrack();
+        racetrack.track.show();
     }
 
 }
