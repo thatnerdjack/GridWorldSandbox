@@ -66,16 +66,27 @@ public class Racetrack extends ActorWorld {
         }
     }
 
-    public void makeWall(int length, int constantCoord, int firstVarCoord, boolean isVertical) {
-        if(isVertical) {
-            for(int i = firstVarCoord; i < length; i++) {
-                Location loc = new Location(i, constantCoord);
-                track.add(loc, new Wall());
+    public void fillWithWalls(Location startLoc, Location endLoc){
+        int x = startLoc.getCol();
+        int y = startLoc.getRow();
+
+        while(true){
+            track.add(new Location(y, x), new Wall());
+
+            if(x == endLoc.getCol() && y == endLoc.getRow()){
+                break;
             }
-        } else {
-            for(int i = firstVarCoord; i < length; i++) {
-                Location loc = new Location(0, i);
-                track.add(loc, new Wall());
+
+            if(x == endLoc.getCol()){
+                x = startLoc.getCol();
+
+                if(startLoc.getRow() - endLoc.getRow() > 0){
+                    y -= 1;
+                } else {
+                    y += 1;
+                }
+            } else {
+                x++;
             }
         }
     }
