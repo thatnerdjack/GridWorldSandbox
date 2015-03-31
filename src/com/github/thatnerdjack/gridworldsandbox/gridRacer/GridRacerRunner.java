@@ -7,7 +7,6 @@ public class GridRacerRunner {
 
     public static void main(String args[]) {
         Racetrack racetrack = new Racetrack();
-        racetrack.generateTrack();
         racetrack.showWorld();
     }
 

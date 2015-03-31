@@ -7,11 +7,8 @@ import info.gridworld.actor.Rock;
  */
 public abstract class TrackObject extends Rock{
     boolean isSolid;
-    private final int X, Y;
 
-    public TrackObject(boolean isSolid, int x, int y) {
+    public TrackObject(boolean isSolid) {
         this.isSolid = isSolid;
-        this.X = x;
-        this.Y = y;
     }
 }

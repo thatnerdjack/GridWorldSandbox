@@ -5,7 +5,7 @@ package com.github.thatnerdjack.gridworldsandbox.gridRacer;
  */
 public class Wall extends Obstacle {
 
-    public Wall(int x, int y) {
-        super(true, x, y);
+    public Wall() {
+        super(true);
     }
 }

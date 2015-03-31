@@ -5,7 +5,7 @@ package com.github.thatnerdjack.gridworldsandbox.gridRacer;
  */
 public abstract class Obstacle extends TrackObject {
 
-    public Obstacle(boolean isSolid, int x, int y) {
-        super(isSolid, x, y);
+    public Obstacle(boolean isSolid) {
+        super(isSolid);
     }
 }

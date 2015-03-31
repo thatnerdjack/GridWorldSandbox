@@ -5,7 +5,7 @@ package com.github.thatnerdjack.gridworldsandbox.gridRacer;
  */
 public abstract class PowerUp extends TrackObject{
 
-    public PowerUp(int x, int y) {
-        super(false, x, y);
+    public PowerUp(boolean isSolid) {
+        super(isSolid);
     }
 }
