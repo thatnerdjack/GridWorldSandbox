@@ -28,7 +28,7 @@ import java.util.ArrayList;
  * A <code>CrabCritter</code> looks at a limited set of neighbors when it eats and moves.
  * <br />
  * This class is not tested on the AP CS A and AB exams.
- */
+*/
 public class CrabCritter extends Critter
 {
     public CrabCritter()
