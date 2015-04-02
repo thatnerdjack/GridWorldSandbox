@@ -13,7 +13,7 @@ public class Racetrack extends ActorWorld {
     private final int DEFAULT_TRACK_HEIGHT = 50;
     private final int DEFAULT_TRACK_WIDTH = 100;
     private final BoundedGrid grid;
-    final ActorWorld track;
+    private final ActorWorld track;
 
     public Racetrack() {
         TRACK_HEIGHT = DEFAULT_TRACK_HEIGHT;
@@ -23,47 +23,31 @@ public class Racetrack extends ActorWorld {
         generateTrack();
     }
 
-    public Racetrack(int trackHeight, int trackWidth) {
-        this.TRACK_HEIGHT = trackHeight;
-        this.TRACK_WIDTH = trackWidth;
-        grid = new BoundedGrid(trackHeight, trackWidth);
-        track = new ActorWorld(grid);
-        generateTrack();
-    }
+//    public Racetrack(int trackHeight, int trackWidth) {
+//        this.TRACK_HEIGHT = trackHeight;
+//        this.TRACK_WIDTH = trackWidth;
+//        grid = new BoundedGrid(trackHeight, trackWidth);
+//        track = new ActorWorld(grid);
+//        generateTrack();
+//    }
 
     public void generateTrack() {
-        for(int i = 0; i < TRACK_WIDTH; i++) { //upper outer wall
-            Location loc = new Location(0, i);
-            track.add(loc, new Wall());
-        }
-        for(int i = 0; i < TRACK_HEIGHT; i++) { //left outer wall
-            Location loc = new Location(i, 0);
-            track.add(loc, new Wall());
-        }
-        for(int i = 0; i < TRACK_WIDTH - 1; i++) { //lower outer wall
-            Location loc = new Location(TRACK_HEIGHT - 1, i);
-            track.add(loc, new Wall());
-        }
-        for(int i = 0; i < TRACK_HEIGHT; i++) { //right outer wall
-            Location loc = new Location(i, TRACK_WIDTH - 1);
-            track.add(loc, new Wall());
-        }
-        for(int i = 10; i < 40; i++) { //left inner wall
-            Location loc = new Location(i, 10);
-            track.add(loc, new Wall());
-        }
-        for(int i = 10; i < 40; i++) { //right inner wall
-            Location loc = new Location(i, 89);
-            track.add(loc, new Wall());
-        }
-        for(int i = 11; i < 89; i++) { //upper inner wall
-            Location loc = new Location(10, i);
-            track.add(loc, new Wall());
-        }
-        for(int i = 11; i < 89; i++) { //lower inner wall
-            Location loc = new Location(39, i);
-            track.add(loc, new Wall());
-        }
+        fillWithWalls(new Location(0,0), new Location(0,99)); //upper outer wall
+        fillWithWalls(new Location(0,0), new Location(49,0)); //left outer wall
+        fillWithWalls(new Location(49,0), new Location(49,99)); //lower outer wall
+        fillWithWalls(new Location(0,99), new Location(49,99)); //right outer wall
+        fillWithWalls(new Location(10,10), new Location(39,10)); //left inner wall
+        fillWithWalls(new Location(10,89), new Location(39,89)); //right inner wall
+        fillWithWalls(new Location(10,10), new Location(10,89)); //upper inner wall
+        fillWithWalls(new Location(39,10), new Location(39,20)); //left lower inner wall
+        fillWithWalls(new Location(39,26), new Location(39,73)); //center lower inner wall
+        fillWithWalls(new Location(39,79), new Location(39,89)); //right lower inner wall
+        fillWithWalls(new Location(35,26), new Location(35,73)); //lower pit wall
+        fillWithWalls(new Location(30,20), new Location(30,79)); //upper pit wall
+        fillWithWalls(new Location(30,20), new Location(38,20)); //left outer pit wall
+        fillWithWalls(new Location(30,79), new Location(38,79)); //right outer pit wall
+        fillWithWalls(new Location(35,26), new Location(38,26)); //left inner pit wall
+        fillWithWalls(new Location(35,73), new Location(38,73)); //right outer pit wall
     }
 
     public void fillWithWalls(Location startLoc, Location endLoc){

@@ -1,1 +1,4 @@
-•compress generateTrack() for loops down
+•put fillWithWalls() into the constructor of the Walls class
+•change fillWithWalls() to take different wall types
+•change generateTrack() so that it will work with different sized tracks
+•get TrackMarking working
