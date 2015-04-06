@@ -16,36 +16,28 @@ public class Racetrack extends ActorWorld {
     private final int TRACK_WIDTH;
     private final int DEFAULT_TRACK_HEIGHT = 50;
     private final int DEFAULT_TRACK_WIDTH = 100;
-    private final BoundedGrid grid;
-    private final ActorWorld track;
 
     public Racetrack() {
         TRACK_HEIGHT = DEFAULT_TRACK_HEIGHT;
         TRACK_WIDTH = DEFAULT_TRACK_WIDTH;
-        grid = new BoundedGrid(TRACK_HEIGHT, TRACK_WIDTH);
-        track = new ActorWorld(grid);
+        this.setGrid(new BoundedGrid(TRACK_HEIGHT, TRACK_WIDTH));
         generateTrack();
     }
 
 //    public Racetrack(int trackHeight, int trackWidth) {
 //        this.TRACK_HEIGHT = trackHeight;
 //        this.TRACK_WIDTH = trackWidth;
-//        grid = new BoundedGrid(trackHeight, trackWidth);
-//        track = new ActorWorld(grid);
+//        this.setGrid(new BoundedGrid(trackHeight, trackWidth));
 //        generateTrack();
 //    }
 
     public void generateTrack() {
-        fillWithWallsRectangle(new Location(0,0), new Location(49,99));
-        fillWithWallsRectangle(new Location(10,10), new Location(39,89), Location.SOUTH);
-        fillWithWallsRectangle(new Location(39,10), new Location(39,20), Location.NORTH, Location.WEST);
-        //START HERE REPLACING WALLS WITH NEW METHOD
-        fillWithWalls(new Location(35, 26), new Location(35, 73)); //lower pit wall
-        fillWithWalls(new Location(30, 20), new Location(30, 79)); //upper pit wall
-        fillWithWalls(new Location(30,20), new Location(38,20)); //left outer pit wall
-        fillWithWalls(new Location(30,79), new Location(38,79)); //right outer pit wall
-        fillWithWalls(new Location(35,26), new Location(38,26)); //left inner pit wall
-        fillWithWalls(new Location(35,73), new Location(38,73)); //right outer pit wall
+        fillWithWallsRectangle(new Location(0, 0), new Location(49, 99));
+        fillWithWallsRectangle(new Location(10, 10), new Location(39, 89), Location.SOUTH);
+        fillWithWallsRectangle(new Location(39, 10), new Location(39, 20), Location.NORTH, Location.WEST);
+        fillWithWallsRectangle(new Location(35, 26), new Location(39, 73)); //lower pit wall section
+        fillWithWallsRectangle(new Location(30, 20), new Location(39, 79), Location.SOUTH);
+        fillWithWalls(new Location(39, 80), new Location(39, 88));
     }
 
     public void fillWithWallsRectangle(Location topLeft, Location bottomRight) {
@@ -85,7 +77,7 @@ public class Racetrack extends ActorWorld {
         int y = startLoc.getRow();
 
         while(true){
-            track.add(new Location(y, x), new Wall());
+            this.add(new Location(y, x), new Wall());
 
             if(x == endLoc.getCol() && y == endLoc.getRow()){
                 break;
@@ -103,10 +95,6 @@ public class Racetrack extends ActorWorld {
                 x++;
             }
         }
-    }
-
-    public void showWorld() {
-        track.show();
     }
 
     /* Getters */

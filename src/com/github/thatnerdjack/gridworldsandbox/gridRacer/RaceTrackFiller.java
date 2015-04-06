@@ -1,4 +1,6 @@
-package <YOUR PACKAGE>;
+//for future use
+
+package com.github.thatnerdjack.gridworldsandbox.gridRacer;
 
 import info.gridworld.actor.Actor;
 import info.gridworld.actor.ActorWorld;

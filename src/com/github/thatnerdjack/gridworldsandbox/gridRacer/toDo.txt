@@ -2,3 +2,4 @@
 •change fillWithWalls() to take different wall types
 •change generateTrack() so that it will work with different sized tracks
 •get TrackMarking working
+•addFlags()
