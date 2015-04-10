@@ -18,9 +18,16 @@ public class Racer extends Critter {
     private int fuel = 100;
     private int movingDirection = Location.WEST;
 
-    public Racer() {
+    public Racer(int startPos) {
         acceleration = (int)(Math.random() * 10);
         handling = (int)(Math.random() * 10);
+        if(!(startPos >= 1 && startPos <= 8)) {
+            throw new RuntimeException("Invalid start position. Position not on start line.");
+        }
+        Location startLoc = new Location((startPos + 39), 50); //START HERE
+        if(Racetrack.getInstance().getGrid().get(startLoc) != null) {
+            throw new RuntimeException("Invalid start position. Position already occupied.");
+        }
     }
 
     public Racer(int acceleration, int handling) {
@@ -47,6 +54,5 @@ public class Racer extends Critter {
                 a.removeSelfFromGrid();
             }
         }
-
     }
 }

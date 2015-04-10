@@ -17,11 +17,20 @@ public class Racetrack extends ActorWorld {
     private final int DEFAULT_TRACK_HEIGHT = 50;
     private final int DEFAULT_TRACK_WIDTH = 100;
 
-    public Racetrack() {
+    private static Racetrack ourInstance = new Racetrack();
+
+    public static Racetrack getInstance(){
+        if(ourInstance == null){
+            ourInstance = new Racetrack();
+        }
+
+        return ourInstance;
+    }
+
+    private Racetrack() {
         TRACK_HEIGHT = DEFAULT_TRACK_HEIGHT;
         TRACK_WIDTH = DEFAULT_TRACK_WIDTH;
         this.setGrid(new BoundedGrid(TRACK_HEIGHT, TRACK_WIDTH));
-        generateTrack();
     }
 
 //    public Racetrack(int trackHeight, int trackWidth) {
@@ -77,7 +86,7 @@ public class Racetrack extends ActorWorld {
         int y = startLoc.getRow();
 
         while(true){
-            this.add(new Location(y, x), new Wall());
+            Racetrack.getInstance().add(new Location(y, x), new Wall());
 
             if(x == endLoc.getCol() && y == endLoc.getRow()){
                 break;

@@ -6,9 +6,10 @@ package com.github.thatnerdjack.gridworldsandbox.gridRacer;
 public class GridRacerRunner {
 
     public static void main(String args[]) {
-        Racetrack racetrack = new Racetrack();
-        racetrack.addOccupantClass(Racer.class.getName());
-        racetrack.show();
+        Racetrack.getInstance().generateTrack();
+        Racetrack.getInstance().addOccupantClass(Racer.class.getName());
+        Racetrack.getInstance().add(new Racer(1));
+        Racetrack.getInstance().show();
     }
 
 }
