@@ -106,6 +106,18 @@ public class Racetrack extends ActorWorld {
         }
     }
 
+    public static void startRace() {
+        Racetrack.getInstance().add(new Location(40, 50), new Racer());
+        Racetrack.getInstance().add(new Location(41, 50), new Racer());
+        Racetrack.getInstance().add(new Location(42, 50), new Racer());
+        Racetrack.getInstance().add(new Location(43, 50), new Racer());
+        Racetrack.getInstance().add(new Location(44, 50), new Racer());
+        Racetrack.getInstance().add(new Location(45, 50), new Racer());
+        Racetrack.getInstance().add(new Location(46, 50), new Racer());
+        Racetrack.getInstance().add(new Location(47, 50), new Racer());
+        Racetrack.getInstance().add(new Location(48, 50), new Racer());
+    }
+
     /* Getters */
     public int getTRACK_HEIGHT() {
         return TRACK_HEIGHT;

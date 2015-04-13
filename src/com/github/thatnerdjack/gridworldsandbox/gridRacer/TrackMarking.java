@@ -5,7 +5,7 @@ package com.github.thatnerdjack.gridworldsandbox.gridRacer;
  */
 public abstract class TrackMarking extends TrackObject {
 
-    public TrackMarking(boolean isSolid) {
-        super(isSolid);
+    public TrackMarking() {
+        super(false);
     }
 }
