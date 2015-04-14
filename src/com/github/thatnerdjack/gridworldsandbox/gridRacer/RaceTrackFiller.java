@@ -6,8 +6,7 @@ import info.gridworld.actor.Actor;
 import info.gridworld.actor.ActorWorld;
 import info.gridworld.grid.Location;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 import java.util.List;
 
 /**
@@ -54,12 +53,49 @@ public abstract class RaceTrackFiller {
         }
     }
 
+    public void fillWithActorsDiagonalLine(Location startLoc, Location endLoc){
+        int x = startLoc.getCol();
+        int y = startLoc.getRow();
+
+        while(true){
+            Actor actor = getActor(new Location(y, x));
+
+            if(actor != null){
+                addActor(new Location(y, x), getActor(new Location(y, x)));
+            }
+
+            if(x == endLoc.getCol() && y == endLoc.getRow()){
+                break;
+            }
+
+            if(startLoc.getCol() - endLoc.getCol() > 0){
+                x--;
+            } else{
+                x++;
+            }
+
+            if(startLoc.getRow() - endLoc.getRow() > 0){
+                y--;
+            } else{
+                y++;
+            }
+        }
+    }
+
+    public void addActor(Location location, Actor actor){
+        world.add(location, actor);
+    }
+
     public void fillWithActors(Location startLoc, Location endLoc){
         int x = startLoc.getCol();
         int y = startLoc.getRow();
 
         while(true){
-            world.add(new Location(y, x), getActor(new Location(y, x)));
+            Actor actor = getActor(new Location(y, x));
+
+            if(actor != null){
+                addActor(new Location(y, x), actor);
+            }
 
             if(x == endLoc.getCol() && y == endLoc.getRow()){
                 break;

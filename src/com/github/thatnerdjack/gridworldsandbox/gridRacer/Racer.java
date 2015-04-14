@@ -29,23 +29,12 @@ public class Racer extends Critter {
     }
 
     public void act() {
-        if(this.getGrid() != null) {
-            ArrayList actors = this.getActors();
-            this.processActors(actors);
-            Location loc = this.getLocation();
-            Location moveLoc = loc.getAdjacentLocation(movingDirection);
-            this.makeMove(moveLoc);
+        Integer turnFlag = Racetrack.getInstance().turnFlags.get(getLocation());
+        if(turnFlag != null){
+            movingDirection = turnFlag;
         }
-    }
 
-    public void processActors(ArrayList<Actor> actors) {
-        Iterator i$ = actors.iterator();
-
-        while(i$.hasNext()) {
-            Actor a = (Actor)i$.next();
-            if((a instanceof TurnFlag)) {
-//                setDirection(); //START HERE
-            }
-        }
+        Location moveLoc = getLocation().getAdjacentLocation(movingDirection);
+        makeMove(moveLoc);
     }
 }
